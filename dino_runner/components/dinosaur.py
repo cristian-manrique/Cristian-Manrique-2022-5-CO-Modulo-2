@@ -10,8 +10,8 @@ class Dinosaur(Sprite):
     JUMP_SPEED = 8.5
     DUCK_SPEED = 8.5
 
-    def _init_(self):
-        pygame.sprite.Sprite._init_(self)
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
         self.duck_img = DUCKING
         self.run_img = RUNNING
         self.jump_img = JUMPING
