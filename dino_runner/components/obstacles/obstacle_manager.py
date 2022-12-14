@@ -1,7 +1,7 @@
 import pygame
 
-from dino_runner.utils.constants import SMALL_CACTUS, BIRD
-from dino_runner.components.obstacles.cactus import Cactus
+from dino_runner.utils.constants import SMALL_CACTUS, BIRD, LARGE_CACTUS
+from dino_runner.components.obstacles.cactus import SmallCactus, LargeCactus
 from dino_runner.components.obstacles.bird import Bird
 
 
@@ -11,7 +11,8 @@ class OsbtacleManager:
 
   def update(self, game):
     if len(self.obstacles) == 0:
-      cactus = Cactus(SMALL_CACTUS)
+      cactus = SmallCactus(SMALL_CACTUS)
+      cactus = LargeCactus(LARGE_CACTUS)
       self.obstacles.append(cactus)
       bird = Bird(BIRD)
       self.obstacles.append(bird)
