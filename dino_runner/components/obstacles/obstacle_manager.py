@@ -8,9 +8,9 @@ class OsbtacleManager:
   def __init__(self):
     self.obstacles = []
 
-  def update(self,game):
+  def update(self, game):
     if len(self.obstacles) == 0:
-      cactus = cactus(SMALL_CACTUS)
+      cactus = Cactus(SMALL_CACTUS)
       self.obstacles.append(cactus)
 
     for obstacle in self.obstacles:

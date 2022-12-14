@@ -37,7 +37,7 @@ class Game:
     def update(self):
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
-        self.obstacle_manager.update()
+        self.obstacle_manager.update(self)
 
     def draw(self):
         self.clock.tick(FPS)
@@ -45,7 +45,7 @@ class Game:
         self.draw_background()
         self.player.draw(self.screen)
         self.obstacle_manager.draw(self.screen)
-        pygame.display.update(self)
+        pygame.display.update()
         # pygame.display.flip()
 
     def draw_background(self):
