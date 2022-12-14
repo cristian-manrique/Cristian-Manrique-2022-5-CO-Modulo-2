@@ -9,6 +9,7 @@ class Dinosaur(Sprite):
     Y_POS = 310
     JUMP_SPEED = 8.5
     DUCK_SPEED = 8.5
+    Y_POS_DUCK = 340
 
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
@@ -72,7 +73,7 @@ class Dinosaur(Sprite):
         self.image = DUCKING[0]
         self.dino_rect = self.image.get_rect()
         self.dino_rect.x = self.X_POS
-        self.dino_rect.y = self.Y_POS
+        self.dino_rect.y = self.Y_POS_DUCK
         self.step_index += 1
 
     def draw(self, screen):
