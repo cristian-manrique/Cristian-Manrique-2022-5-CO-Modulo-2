@@ -4,7 +4,7 @@ from dino_runner.utils.constants import FONT_STYLE, SCREEN_HEIGHT, SCREEN_WIDTH
 class Menu: 
     half_screen_height = SCREEN_HEIGHT // 2
     half_screen_width = SCREEN_WIDTH // 2
-    def _init_(self, message, screen):
+    def __init__(self, message, screen):
 
         screen.fill((255,255,255))
         self.font = pygame.font.Font(FONT_STYLE, 30)

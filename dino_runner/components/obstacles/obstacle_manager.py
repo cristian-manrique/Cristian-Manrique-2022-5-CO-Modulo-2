@@ -7,7 +7,7 @@ from dino_runner.components.obstacles.bird import Bird
 
 
 class ObstacleManager:
-  def _init_(self):
+  def __init__(self):
     self.obstacles = []
     
     

@@ -8,7 +8,7 @@ from dino_runner.utils.constants import *
 from dino_runner.components.menu import Menu
 class Game:
     GAME_SPEED = 20
-    def _init_(self):
+    def __init__(self):
         pygame.init()
         pygame.display.set_caption(TITLE)
         pygame.display.set_icon(ICON)
@@ -84,9 +84,8 @@ class Game:
         if self.death_counter == 0:
             self.menu.draw(self.screen)
         else:
-            self.menu.update_message('Game over. Press any key to restart.')
-            self.menu.draw(self.screen)
-
+            self.menu.update_message('New message')
+            self.draw(self.screen)
 
         self.screen.blit(ICON, (half_screen_width - 50, half_screen_height - 140))
         self.menu.update(self)
