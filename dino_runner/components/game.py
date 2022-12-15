@@ -22,6 +22,7 @@ class Game:
         self.obstacle_manager = ObstacleManager()
         self.running = False
         self.score = 0
+        self.highest_score = []
         self.death_counter = 0
         self.menu = Menu('Press any key to start', self.screen)
 
@@ -36,14 +37,12 @@ class Game:
     def run(self):
         self.obstacle_manager.reset_obstacles()
         self.score = 0
-        self.game_speed =self.GAME_SPEED
+        self.game_speed = self.GAME_SPEED
         self.playing = True
         while self.playing:
             self.events()
             self.update()
             self.draw()
-        
-
 
     def events(self):
         for event in pygame.event.get():
@@ -55,6 +54,7 @@ class Game:
         self.player.update(user_input)
         self.obstacle_manager.update(self)
         self.update_score()
+        
 
     def draw(self):
         self.clock.tick(FPS)
@@ -81,22 +81,24 @@ class Game:
         half_screen_height = SCREEN_HEIGHT // 2
         half_screen_width = SCREEN_WIDTH // 2
 
+
         if self.death_counter == 0:
             self.menu.draw(self.screen)
         else:
-            self.menu.update_message('New message')
+            # self.highest_score.append(self.score)
+            self.menu.update_message(f'Game over. Press any key to restart.',  f'Your Score: {self.score}' ,f'Hignest score: {self.hignest_scores()}',f'Total deaths: {self.death_counter}' )
+            
             self.menu.draw(self.screen)
-
+            
         self.screen.blit(ICON, (half_screen_width - 50, half_screen_height - 140))
         self.menu.update(self)
-
-
 
     def update_score(self):
         self.score += 1
         
         if self.score % 200 == 0 and self.game_speed < 500:
             self.game_speed += 5 
+        
 
     def draw_score(self):
         font = pygame.font.Font(FONT_STYLE, 30)
@@ -104,3 +106,11 @@ class Game:
         text_rect = text.get_rect()
         text_rect.center = (1000, 50)
         self.screen.blit(text, text_rect)
+
+    def hignest_scores(self):
+        flag = True
+        if self.death_counter > 0: 
+            self.highest_score.append(self.score)
+                       
+        self.highest_score.sort()
+        return self.highest_score[len(self.highest_score) - 1]
