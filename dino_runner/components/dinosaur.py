@@ -1,4 +1,5 @@
 import pygame
+from pygame import mixer
 
 from pygame.sprite import Sprite
 
@@ -27,6 +28,7 @@ class Dinosaur(Sprite):
         self.jump_speed = self.JUMP_SPEED
         self.has_power_up = False
         self.power_time_up = 0
+        self.jump_sound = mixer.Sound("dino_runner/assets/sounds/jump_sound.wav")
 
 
     def update(self, user_input):
@@ -37,17 +39,15 @@ class Dinosaur(Sprite):
         elif self.dino_duck:
             self.duck()
 
-        sound = pygame.mixer.Sound("../assets/sounds/salto.ogg")
-      
         if user_input[pygame.K_UP] and not self.dino_jump:
             self.dino_jump = True
             self.dino_run = False
-            #self.dino_duck = False
+            self.dino_duck = False
+            self.jump_sound.play()
         elif user_input[pygame.K_DOWN] and not self.dino_jump:
             self.dino_jump = False
             self.dino_run = False
             self.dino_duck = True
-            sound.play()
         elif not self.dino_jump:
             self.dino_jump = False
             self.dino_duck = False
